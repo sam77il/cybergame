@@ -1,7 +1,7 @@
 # action adventure
 -jump & run game mit  Beat’emUp aspekten
 
-# Teilenhmer/Mitspieler-anzahl
+# Teilnehmer/Mitspieler-anzahl
 -singleplayer
 
 # Zeitverhalten
@@ -15,7 +15,11 @@
 - man kann waffen und perks sammeln um die gegner zu besiegen
 - einsammeln von wertitems => neues level freischalten
 - gegner verkörpern roboter und maschienen
-? bosskampf am ende
-? durch nutzung der pearks kann man geschwächt weden
-? die sicht und grafik kann sich verändern und man wird langsamer
-? kombos um gegner schneller zu besiegen
+
+## Ideen
+
+- bosskampf am ende?
+- durch nutzung der perks kann man geschwächt weden?
+- die sicht und grafik kann sich verändern und man wird langsamer?
+- kombos um gegner schneller zu besiegen?
+
