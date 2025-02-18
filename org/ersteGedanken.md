@@ -42,7 +42,16 @@
 
 ### gegnerdrops
 
--heilung => baterieen
+- heilung => stims
+- heilung+ => SSD Karten
+- waffen(seltener)
+- coins(extrem selten) => man kann herzen nach levelabschluss kaufen
+
+### aufsammeln
+
+-waffen
+-coins(hinter schwereren jumps)
+
 
 - in einem cyberpunk style und retro grafik
 - verschiedene level nach auswahl
