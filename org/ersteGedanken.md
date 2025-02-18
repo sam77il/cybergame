@@ -43,6 +43,9 @@
 ### gegnerdrops
 
 -heilung => baterieen
+-heilung+ => SSD Karten
+-waffen(seltener)
+-
 
 - in einem cyberpunk style und retro grafik
 - verschiedene level nach auswahl
