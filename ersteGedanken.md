@@ -22,4 +22,4 @@
 - durch nutzung der pearks kann man geschwächt weden?
 - die sicht und grafik kann sich verändern und man wird langsamer?
 - kombos um gegner schneller zu besiegen?
-test
+
