@@ -16,8 +16,9 @@
 - einsammeln von wertitems => neues level freischalten
 - gegner verkörpern roboter und maschienen
 
+##Ideen
 
-1 bosskampf am ende?
-2 durch nutzung der pearks kann man geschwächt weden?
-3 die sicht und grafik kann sich verändern und man wird langsamer?
-4 kombos um gegner schneller zu besiegen?
+- bosskampf am ende?
+- durch nutzung der pearks kann man geschwächt weden?
+- die sicht und grafik kann sich verändern und man wird langsamer?
+- kombos um gegner schneller zu besiegen?
