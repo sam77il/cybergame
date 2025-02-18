@@ -16,7 +16,7 @@
 - einsammeln von wertitems => neues level freischalten
 - gegner verkörpern roboter und maschienen
 
-##Ideen
+## Ideen
 
 - bosskampf am ende?
 - durch nutzung der pearks kann man geschwächt weden?
