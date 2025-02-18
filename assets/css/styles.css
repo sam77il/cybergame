@@ -1,0 +1,117 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "DM Sans", sans-serif;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 3rem;
+  align-items: center;
+}
+
+header h1 a {
+  color: black;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 2rem;
+}
+
+header nav ul {
+  display: flex;
+  list-style: none;
+  flex-direction: row;
+  gap: 15px;
+}
+
+header nav ul li a {
+  color: black;
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: color 0.2s;
+}
+
+header nav ul li a:hover {
+  color: #555;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+}
+
+#start {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#start-text {
+  text-align: center;
+  margin-top: 75px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#start-text h2 {
+  font-size: 3rem;
+}
+
+#start-text h3 {
+  font-size: 1.5rem;
+  font-weight: 300;
+  max-width: 70vw;
+}
+
+#explore {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.button {
+  text-decoration: none;
+  color: white;
+  background-color: black;
+  padding: 5px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+#socials {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#socials h4 {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+#socials ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+#socials ul li a {
+  opacity: 0.3;
+  transition: opacity 0.2s;
+}
+
+#socials ul li a:hover {
+  opacity: 1;
+}
