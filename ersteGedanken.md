@@ -10,6 +10,10 @@
 # spielerperspektive
 -seitenansicht
 
+# steuerung
+-AD zum laufen, E zum perks einsetzen, Space springen, 12345 slots für inventar wechseln, linksklick zum angreifen
+
+
 - in einem cyberpunk style und retro grafik
 - verschiedene level nach auswahl
 - man kann waffen und perks sammeln um die gegner zu besiegen
