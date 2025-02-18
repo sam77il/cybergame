@@ -22,4 +22,7 @@
 - durch nutzung der perks kann man geschwächt weden?
 - die sicht und grafik kann sich verändern und man wird langsamer?
 - kombos um gegner schneller zu besiegen?
+- slow motion?
+- spielernamen am anfang des spiels eingeben?
+- 
 
