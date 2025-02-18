@@ -23,6 +23,6 @@
 - die sicht und grafik kann sich verändern und man wird langsamer?
 - kombos um gegner schneller zu besiegen?
 - slow motion?
-- spielernamen am anfang des spiels eingeben
+- spielernamen am anfang des spiels eingeben?
 - 
 
