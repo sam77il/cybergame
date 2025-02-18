@@ -1,3 +1,29 @@
 body {
   min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #111;
+}
+
+a {
+  padding: 10px 20px;
+  font-size: 1.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  outline: none;
+  background-color: rgb(147, 0, 184);
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+  font-family: sans-serif;
+  transition: background-color 0.2s;
+}
+
+a:hover {
+  background-color: rgb(179, 0, 223);
+}
+
+a:active {
+  background-color: rgb(141, 0, 223);
 }
