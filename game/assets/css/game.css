@@ -6,14 +6,26 @@
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   min-height: 100vh;
-  transition: all 1s;
 }
 
 ul {
   list-style: none;
+}
+
+#box {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  transition: all 1s;
+}
+
+#content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
 }

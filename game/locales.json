@@ -3,6 +3,26 @@
     "gameName": "Cybergame",
 
     "_comment": "-- StartMenu --",
-    "startMessage": "Drücke Leertaste um das Spiel zu starten."
+    "startStartMessage": "Drücke Leertaste um das Spiel zu starten.",
+
+    "__comment": "-- ActionMenu --",
+    "actionStartButton": "Start",
+    "actionSettingsButton": "Einstellungen",
+    "actionQuitButton": "Verlassen",
+
+    "___comment": "-- GameStartMenu --",
+    "gameStartBackButton": "Zurück",
+    "gameStartCreateCharButton": "Erstelle neuen Charakter",
+    "gameStartName": "Name",
+    "gameStartLevel": "Level",
+    "gameStartCoins": "Coins",
+    "gameStartPlayButton": "Spiele als",
+    "gameStartDeleteButton": "Löschen",
+
+    "____comment": "-- CreateCharMenu --",
+    "createCharTitle": "Charaktererstellung",
+    "createCharName": "Name",
+    "createCharSubmitButton": "Erstellen",
+    "createCharBackButton": "Zurück"
   }
 }

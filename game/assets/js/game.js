@@ -25,11 +25,11 @@ async function loadConfig() {
 }
 
 async function StartMenu() {
-  await Transition("start");
+  await ChangeTab("start");
 
   START_MENU.innerHTML = `
     <h1>Cybergame</h1>
-    <p>${locales.de.startMessage}</p>
+    <p>${locales.de.startStartMessage}</p>
     `;
   window.addEventListener("keyup", handleStartGame);
 }
@@ -42,132 +42,187 @@ function handleStartGame(e) {
 }
 
 async function ActionMenu() {
-  await Transition("start-to-action");
+  await ChangeTab("action");
 
   ACTION_MENU.innerHTML = `
     <h1>Cybergame</h1>
 
     <ul>
-        <li><button id="action-menu-start" type="button">Start</button></li>
-        <li><button type="button">Shop</button></li>
-        <li><button type="button">Settings</button></li>
-        <li><button type="button">Quit</button></li>
+        <li><button id="action-menu-start" type="button">${locales.de.actionStartButton}</button></li>
+        <li><button type="button">${locales.de.actionSettingsButton}</button></li>
+        <li><button id="action-menu-quit" type="button">${locales.de.actionQuitButton}</button></li>
     </ul>
   `;
-
+  const ACTION_MENU_QUIT = document.querySelector("#action-menu-quit");
+  ACTION_MENU_QUIT.addEventListener("click", () => {
+    window.location.href = "/myapache/cybergame";
+  });
   const ACTION_MENU_START = document.querySelector("#action-menu-start");
-  ACTION_MENU_START.addEventListener("click", () => handleActionStart(false));
+  ACTION_MENU_START.addEventListener("click", async function () {
+    await ChangeTab("gamestart");
+    handleActionStart(true);
+  });
 }
 
-async function handleActionStart(action) {
-  if (!action) {
-    await Transition("action-to-gamestart");
-  }
-  localStorage.removeItem("character");
-  let character = localStorage.getItem("character");
-  //console.log(character);
-  if (character) {
-    character = JSON.parse(character);
-    GAMESTART_MENU.innerHTML = `
+async function handleActionStart(reset) {
+  //if (reset) localStorage.removeItem("characters");
+
+  let characters = localStorage.getItem("characters");
+  if (characters) {
+    characters = JSON.parse(characters);
+    for (let character of characters) {
+      GAMESTART_MENU.innerHTML += `
         <div>
-            <p>Name: ${character.name}</p>
-            <p>Level: ${character.level}</p>
-            <p>Coins: ${character.coins}</p>
-            <button>Continue playing as <b>${character.name}</b></button>
+            <p>${locales.de.gameStartName}: ${character.name}</p>
+            <p>${locales.de.gameStartLevel}: ${character.level}</p>
+            <p>${locales.de.gameStartCoins}: ${character.coins}</p>
+            <button>${locales.de.gameStartPlayButton} <b>${character.name}</b></button>
+            <button class="gamestart-menu-delete" data-id="${character.id}">${locales.de.gameStartDeleteButton}</button>
         </div>
     `;
+      const GAMESTART_MENU_DELETE = document.querySelectorAll(
+        ".gamestart-menu-delete"
+      );
+      for (let button of GAMESTART_MENU_DELETE) {
+        button.addEventListener("click", handleDeleteCharacter);
+      }
+    }
   } else {
-    console.log(GAMESTART_MENU);
     GAMESTART_MENU.innerHTML = `
         <div>
-            <button id="gamestart-menu-createchar" type="button">Create new character</button>
+            <button id="gamestart-menu-createchar" type="button">${locales.de.gameStartCreateCharButton}</button>
+            <button id="gamestart-menu-back" type="button">${locales.de.gameStartBackButton}</button>
         </div>
     `;
-    const GAMESTART_MENU_CREATECHAR = document.querySelector(
-      "#gamestart-menu-createchar"
-    );
-    GAMESTART_MENU_CREATECHAR.addEventListener("click", handleCreateCharacter);
   }
-  //console.log(character);
+  const GAMESTART_MENU_BACK = document.querySelector("#gamestart-menu-back");
+  GAMESTART_MENU_BACK.addEventListener("click", ActionMenu);
+  const GAMESTART_MENU_CREATECHAR = document.querySelector(
+    "#gamestart-menu-createchar"
+  );
+  GAMESTART_MENU_CREATECHAR.addEventListener("click", handleCreateCharacter);
+}
+
+function handleDeleteCharacter(e) {
+  const oldCharacters = JSON.parse(localStorage.getItem("characters"));
+  const newCharacters = oldCharacters.filter(
+    (character) => Number(character.id) !== Number(e.target.dataset.id)
+  );
+
+  localStorage.setItem("characters", JSON.stringify(newCharacters));
+  e.target.parentElement.remove();
 }
 
 async function handleCreateCharacter(e) {
-  console.log("ughfdudiusdhgiudgh");
-  await Transition("gamestart-to-createchar");
+  const characters = JSON.parse(localStorage.getItem("characters"));
+  if (characters && characters.length >= 3) {
+    alert("Du hast das Maximum an Charaktären erreicht");
+    return;
+  }
+  await ChangeTab("createchar");
   CREATECHAR_MENU.innerHTML = `
-    <h2>Create Character:</h2>
+    <h2>${locales.de.createCharTitle}</h2>
     <form id="createchar-menu-form">
-        <label for="createchar-menu-form-name">Name: </label>
-        <input id="createchar-menu-form-name" type="text" placeholder="Name..." name="name" />
+        <label for="createchar-menu-form-name">${locales.de.createCharName}: </label>
+        <input id="createchar-menu-form-name" type="text" placeholder="${locales.de.createCharName}..." name="name" required />
         <br>
-        <button type="submit">Create Character</button>
+        <button type="submit">${locales.de.createCharSubmitButton}</button>
+        <button id="createchar-menu-form-back" type="button">${locales.de.createCharBackButton}</button>
     </form>
   `;
+  const CREATECHAR_MENU_FORM_BACK = document.querySelector(
+    "#createchar-menu-form-back"
+  );
+  CREATECHAR_MENU_FORM_BACK.addEventListener("click", async () => {
+    await ChangeTab("gamestart");
+    handleActionStart(false);
+  });
   const CREATECHAR_MENU_FORM = document.querySelector("#createchar-menu-form");
   CREATECHAR_MENU_FORM.addEventListener("submit", handleCreateCharacterSubmit);
 }
 
-function handleCreateCharacterSubmit(e) {
+async function handleCreateCharacterSubmit(e) {
   e.preventDefault();
   const charName = document.querySelector("#createchar-menu-form-name").value;
-  const newCharacter = {
-    name: charName,
-    level: 1,
-    coins: 0,
-    items: {},
-    perks: [],
-  };
-  localStorage.setItem("character", JSON.stringify(newCharacter));
-  Transition("createchar-to-gamestart");
+  const characters = JSON.parse(localStorage.getItem("characters"));
+  let newCharacters = null;
+
+  if (characters) {
+    newCharacters = characters;
+    newCharacters.push({
+      id: Date.now(),
+      name: charName,
+      level: 1,
+      coins: 0,
+      items: {},
+      perks: [],
+    });
+  } else {
+    newCharacters = [
+      {
+        id: Date.now(),
+        name: charName,
+        level: 1,
+        coins: 0,
+        items: {},
+        perks: [],
+      },
+    ];
+  }
+
+  localStorage.setItem("characters", JSON.stringify(newCharacters));
+  await ChangeTab("gamestart");
+  handleActionStart(false);
 }
 
-function Transition(type) {
+function ChangeTab(menu) {
+  const box = document.querySelector("#box");
+  const content = document.querySelector("#content");
   return new Promise((resolve) => {
-    document.body.style.backgroundColor = "black";
+    box.style.opacity = "1";
+    box.style.zIndex = "2";
     setTimeout(() => {
-      document.body.style.backgroundColor = "white";
-      switch (type) {
+      box.style.zIndex = "-1";
+      box.style.opacity = "0";
+      switch (menu) {
         case "start":
-          if (!START_MENU) {
-            START_MENU = document.createElement("div");
-            START_MENU.setAttribute("id", "start-menu");
-            document.body.appendChild(START_MENU);
-          }
+          content.innerHTML = "";
+          START_MENU = document.createElement("div");
+          START_MENU.setAttribute("id", "start-menu");
+          content.appendChild(START_MENU);
           break;
-        case "start-to-action":
-          START_MENU.remove();
-          if (!ACTION_MENU) {
-            ACTION_MENU = document.createElement("div");
-            ACTION_MENU.setAttribute("id", "action-menu");
-            document.body.appendChild(ACTION_MENU);
-          }
+        case "action":
+          content.innerHTML = "";
+          ACTION_MENU = document.createElement("div");
+          ACTION_MENU.setAttribute("id", "action-menu");
+          content.appendChild(ACTION_MENU);
           break;
-        case "action-to-gamestart":
-          ACTION_MENU.remove();
-          console.log(GAMESTART_MENU);
-          if (!GAMESTART_MENU) {
-            GAMESTART_MENU = document.createElement("div");
-            GAMESTART_MENU.setAttribute("id", "gamestart-menu");
-            document.body.appendChild(GAMESTART_MENU);
-          }
+        case "gamestart":
+          content.innerHTML = "";
+          GAMESTART_MENU = document.createElement("div");
+          GAMESTART_MENU.setAttribute("id", "gamestart-menu");
+          GAMESTART_MENU.innerHTML = `
+            <button id="gamestart-menu-back">${locales.de.gameStartBackButton}</button>
+            <button id="gamestart-menu-createchar" type="button">${locales.de.gameStartCreateCharButton}</button>
+          `;
+          content.appendChild(GAMESTART_MENU);
+          const GAMESTART_MENU_CREATECHAR = document.querySelector(
+            "#gamestart-menu-createchar"
+          );
+          const GAMESTART_MENU_BACK = document.querySelector(
+            "#gamestart-menu-back"
+          );
+          GAMESTART_MENU_BACK.addEventListener("click", ActionMenu);
+          GAMESTART_MENU_CREATECHAR.addEventListener(
+            "click",
+            handleCreateCharacter
+          );
           break;
-        case "gamestart-to-createchar":
-          GAMESTART_MENU.remove();
-          if (!CREATECHAR_MENU) {
-            CREATECHAR_MENU = document.createElement("div");
-            CREATECHAR_MENU.setAttribute("id", "createchar-menu");
-            document.body.appendChild(CREATECHAR_MENU);
-          }
-          break;
-        case "createchar-to-gamestart":
-          CREATECHAR_MENU.remove();
-          console.log(GAMESTART_MENU);
-          if (!GAMESTART_MENU) {
-            GAMESTART_MENU = document.createElement("div");
-            GAMESTART_MENU.setAttribute("id", "createchar-menu");
-            document.body.appendChild(GAMESTART_MENU);
-          }
-          handleActionStart(false);
+        case "createchar":
+          content.innerHTML = "";
+          CREATECHAR_MENU = document.createElement("div");
+          CREATECHAR_MENU.setAttribute("id", "createchar-menu");
+          content.appendChild(CREATECHAR_MENU);
           break;
       }
       resolve();
@@ -176,7 +231,3 @@ function Transition(type) {
 }
 
 document.addEventListener("DOMContentLoaded", initializeGame);
-
-function resetStorage() {
-  localStorage.removeItem("character");
-}
