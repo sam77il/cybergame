@@ -1,0 +1,8 @@
+{
+  "de": {
+    "gameName": "Cybergame",
+
+    "_comment": "-- StartMenu --",
+    "startMessage": "Drücke Leertaste um das Spiel zu starten."
+  }
+}
