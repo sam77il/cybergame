@@ -1,1 +1,40 @@
-{}
+{
+  "goontown": {
+    "label": "Goon Town",
+    "level": 1,
+    "enemies": 3,
+    "map": [
+      "DDDZZDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD",
+      "M                                                M",
+      "M                                                M",
+      "M    PPPPPPP             PPPPP         T         M",
+      "M                                     PPPP       M",
+      "M              PPPPPPP                           M",
+      "M                        PPPPPPP                 M",
+      "M         T                    T      PPPPP      M",
+      "M       PPPPP                  PPPPP           T M",
+      "A                   PPPPPPP                  PPPPM",
+      "A                                                M",
+      "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"
+    ]
+  },
+  "lek": {
+    "label": "Lek",
+    "level": 2,
+    "enemies": 5,
+    "map": [
+      "DDDZZDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD",
+      "M                                                M",
+      "M                                                M",
+      "M    PPPPPPP             PPPPP         T         M",
+      "M                                     PPPP       M",
+      "M              PPPPPPP                           M",
+      "M                        PPPPPPP                 M",
+      "M         T                    T      PPPPP      M",
+      "M       PPPPP                  PPPPP           T M",
+      "A                   PPPPPPP                  PPPPM",
+      "A                                                M",
+      "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"
+    ]
+  }
+}

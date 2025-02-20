@@ -14,6 +14,7 @@
     "gameStartBackButton": "Zurück",
     "gameStartCreateCharButton": "Erstelle neuen Charakter",
     "gameStartName": "Name",
+    "gameStartType": "Körpertyp",
     "gameStartLevel": "Level",
     "gameStartCoins": "Coins",
     "gameStartPlayButton": "Spiele als",
@@ -22,6 +23,10 @@
     "____comment": "-- CreateCharMenu --",
     "createCharTitle": "Charaktererstellung",
     "createCharName": "Name",
+    "createCharType": "Körpertyp",
+    "createCharTypeNet": "Pink Netrunner",
+    "createCharTypePunk": "Blue Cyberpunk",
+    "createCharTypePsycho": "Red Cyberpsycho",
     "createCharSubmitButton": "Erstellen",
     "createCharBackButton": "Zurück"
   }
