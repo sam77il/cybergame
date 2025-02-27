@@ -1,40 +1,49 @@
 {
-  "goontown": {
-    "label": "Goon Town",
-    "level": 1,
-    "enemies": 3,
-    "map": [
-      "DDDZZDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD",
-      "M                                                M",
-      "M                                                M",
-      "M    PPPPPPP             PPPPP         T         M",
-      "M                                     PPPP       M",
-      "M              PPPPPPP                           M",
-      "M                        PPPPPPP                 M",
-      "M         T                    T      PPPPP      M",
-      "M       PPPPP                  PPPPP           T M",
-      "A                   PPPPPPP                  PPPPM",
-      "A                                                M",
-      "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"
-    ]
+  "global": {
+    "tileSize": 50,
+    "width": 1024,
+    "height": 600
   },
-  "lek": {
-    "label": "Lek",
-    "level": 2,
-    "enemies": 5,
-    "map": [
-      "DDDZZDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD",
-      "M                                                M",
-      "M                                                M",
-      "M    PPPPPPP             PPPPP         T         M",
-      "M                                     PPPP       M",
-      "M              PPPPPPP                           M",
-      "M                        PPPPPPP                 M",
-      "M         T                    T      PPPPP      M",
-      "M       PPPPP                  PPPPP           T M",
-      "A                   PPPPPPP                  PPPPM",
-      "A                                                M",
-      "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"
-    ]
-  }
+  "levels": [
+    {
+      "name": "goontown",
+      "label": "Goon Town",
+      "level": 1,
+      "enemies": 3,
+      "map": [
+        "BBBBZZBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+        "B                                                B",
+        "B                                                B",
+        "B    PPPPPPP             PPPPP         T         B",
+        "B                                     PPPP       B",
+        "B              PPPPPPP                           B",
+        "B                        PPPPPPP                 B",
+        "B         T                    T      PPPPP      B",
+        "B       PPPPP                  PPPPP           T B",
+        "B                   PPPPPPP                  PPPPB",
+        "B                                                B",
+        "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+      ]
+    },
+    {
+      "name": "lek",
+      "label": "Lek",
+      "level": 2,
+      "enemies": 5,
+      "map": [
+        "BBBBZZBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+        "B                                                B",
+        "B                                                B",
+        "B    PPPPPPP             PPPPP         T         B",
+        "B                                     PPPP       B",
+        "B              PPPPPPP                           B",
+        "B                        PPPPPPP                 B",
+        "B         T                    T      PPPPP      B",
+        "B       PPPPP                  PPPPP           T B",
+        "B                   PPPPPPP                  PPPPB",
+        "B                                                B",
+        "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+      ]
+    }
+  ]
 }

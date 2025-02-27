@@ -1,4 +1,5 @@
 import Game from "./game.js";
+import Player from "./player.js";
 
 let START_MENU = null;
 let ACTION_MENU = null;
@@ -7,19 +8,40 @@ let CREATECHAR_MENU = null;
 let PLAYGAME_MENU = null;
 let canvas = null;
 let ctx = null;
+let bgCanvas = null;
+let bgCtx = null;
 let gameStarted = false;
 let locales = {};
+let gameSettings = null;
+let player = null;
 let game = null;
 
+const controls = {
+  left: null,
+  right: null,
+  up: null,
+};
+
+async function loadConfig() {
+  try {
+    const respone = await fetch("config.json");
+    const json = await respone.json();
+    gameSettings = json;
+    if (respone.ok) console.log("Successfully loaded config.json");
+  } catch (error) {}
+}
+
+loadConfig();
+
 async function initializeGame() {
-  await loadConfig();
+  await loadLocales();
   if (!gameStarted) {
     console.log("Starting game");
-    StartMenu();
+    handleStartCharacter();
   }
 }
 
-async function loadConfig() {
+async function loadLocales() {
   try {
     const response = await fetch("locales.json");
     const json = await response.json();
@@ -125,17 +147,104 @@ async function handleStartCharacter(e) {
   initPlayArea();
 }
 
-function initPlayArea() {
+async function initPlayArea() {
   canvas = document.createElement("canvas");
   canvas.style.backgroundColor = "#333";
   ctx = canvas.getContext("2d");
   PLAYGAME_MENU.appendChild(canvas);
+  canvas.width = gameSettings.global.width;
+  canvas.height = gameSettings.global.height;
+  canvas.style.width = "100%";
+  canvas.style.height = "100%";
+  canvas.style.objectFit = "contain";
+
   game = new Game();
-  canvas.width = 1024;
-  canvas.height = 512;
   ctx.font = "20px sans-serif";
   ctx.fillStyle = "white";
   ctx.fillText(`Level ${game.level}`, 10, 30);
+  await loadMap(game.map, game.tileSize);
+  player = new Player(ctx, 50, 77, 50, 80, game.tileSize, game.map);
+  player.initialize();
+  listenToControls(true);
+  startGameLoop();
+}
+
+function handleKeyDown(e) {
+  switch (e.key) {
+    case "d":
+      controls.right = true;
+      break;
+    case "a":
+      controls.left = true;
+      break;
+    case "w":
+      controls.up = true;
+      break;
+  }
+}
+
+function handleKeyUp(e) {
+  switch (e.key) {
+    case "d":
+      controls.right = false;
+      break;
+    case "a":
+      controls.left = false;
+      break;
+    case "w":
+      controls.up = false;
+      break;
+  }
+}
+
+function listenToControls(state) {
+  if (state) {
+    console.log("listening");
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp);
+  } else {
+    window.removeEventListener("keydown", handleKeyDown);
+    window.removeEventListener("keyup", handleKeyUp);
+  }
+}
+
+function startGameLoop(currentTime) {
+  ctx.clearRect(0, 0, gameSettings.global.width, gameSettings.global.height);
+  ctx.drawImage(bgCanvas, 0, 0);
+  // console.log("now: " + performance.now());
+  // console.log("current: " + currentTime);
+  player.move(controls);
+  player.update();
+  requestAnimationFrame(startGameLoop);
+}
+
+function loadMap(map, size) {
+  return new Promise((resolve, reject) => {
+    bgCanvas = document.createElement("canvas");
+    bgCanvas.width = canvas.width;
+    bgCanvas.height = canvas.height;
+    bgCtx = bgCanvas.getContext("2d");
+
+    for (let row = 0; row < map.length; row++) {
+      for (let col = 0; col < map[row].length; col++) {
+        if (map[row][col] === "P") {
+          bgCtx.fillStyle = "red";
+          bgCtx.fillRect(col * size, row * size, 50, 50);
+        } else if (map[row][col] === "T") {
+          bgCtx.fillStyle = "green";
+          bgCtx.fillRect(col * size, row * size, 50, 50);
+        } else if (map[row][col] === "B") {
+          bgCtx.fillStyle = "white";
+          bgCtx.fillRect(col * size, row * size, 50, 50);
+        } else if (map[row][col] === "Z") {
+          bgCtx.fillStyle = "pink";
+          bgCtx.fillRect(col * size, row * size, 50, 50);
+        }
+      }
+    }
+    ctx.drawImage(bgCanvas, 0, 0);
+    resolve();
+  });
 }
 
 function handleDeleteCharacter(e) {

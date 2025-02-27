@@ -29,3 +29,16 @@ ul {
   width: 100vw;
   height: 100vh;
 }
+
+#playgame-menu {
+  display: block;
+  position: fixed;
+  top: 5%;
+  right: 5%;
+  bottom: 5%;
+  left: 5%;
+  background-color: #000000;
+  box-shadow: 0px 0px 20px #000000;
+  border-radius: 40px;
+  overflow: hidden;
+}
